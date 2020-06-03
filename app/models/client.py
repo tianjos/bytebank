@@ -15,9 +15,6 @@ class ClientModel(BaseModel):
         return v
 
 class ClientModelList:
-    # __clients: List[ClientModel] = []
-    # __index: int = 0
-    # __counter: int = 1
 
     def __init__(self):
         self.__clients: List[ClientModel] = []
