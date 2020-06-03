@@ -20,6 +20,9 @@ class ClientModelList:
         self.__clients: List[ClientModel] = []
         self.__index = 0
         self.__counter = 1
+    
+    def __repr__(self):
+        return f'Clients: <{[item for item in self.__clients]}>'
 
     def __len__(self):
         return len(self.__clients)
@@ -41,20 +44,20 @@ class ClientModelList:
         self.__clients.append(ClientModel(**item))
         self.__index += 1
     
-    # def push_left(self, item):
-    #     self.push(item)
-    #     size = len(self.__clients)
-    #     for index in range((size - 1), 0, -1):
-    #         self.__clients[index], self.__clients[index - 1] = self.__clients[index - 1], self.__clients[index]
+    def push_left(self, item):
+        self.push(item)
+        size = len(self.__clients)
+        for index in range((size - 1), 0, -1):
+            self.__clients[index], self.__clients[index - 1] = self.__clients[index - 1], self.__clients[index]
         
-    # def pop(self):
-    #     item = self.__clients[len(self.__clients) -1]
-    #     del self.__clients[len(self.__clients) -1]
-    #     return item
+    def pop(self):
+        item = self.__clients[len(self.__clients) -1]
+        del self.__clients[len(self.__clients) -1]
+        return item
     
-    # def pop_left(self):
-    #     item = self.__clients[0]
-    #     del self.__clients[0]
-    #     return item
+    def pop_left(self):
+        item = self.__clients[0]
+        del self.__clients[0]
+        return item
 
     
