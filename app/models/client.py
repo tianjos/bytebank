@@ -27,6 +27,9 @@ class ClientModelList:
     def __len__(self):
         return len(self.__clients)
     
+    def __contains__(self, value: str):    
+        return any([True if client.cpf == value else False for client in self])
+
     def __getitem__(self, i):
         return self.__clients[i]
     
@@ -59,5 +62,3 @@ class ClientModelList:
         item = self.__clients[0]
         del self.__clients[0]
         return item
-
-    
