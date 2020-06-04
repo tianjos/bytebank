@@ -13,7 +13,7 @@ class StatementModel(BaseModel):
 
 
 class StatementModelList(BaseModel):
-    statements: List[StatementModel]
+    statements: List[StatementModel] = []
 
     def add(
         self,
