@@ -1,3 +1,4 @@
+from app.models.client import ClientModel
 from app.models.agency import AgencyModel
 from app.models.statement import StatementModelList
 
@@ -21,8 +22,8 @@ class AccountModel:
         self._statements.add(balance=self.balance, description=description, withdraw=value)
         return value
 
-    def transfer(self, value: float, account: 'AccountModel', description: str = None):
-        account.deposit(value, description)
+    def transfer(self, client: ClientModel, value: float, description: str = None):
+        client.account.deposit(value, description)
         self.withdraw(value, description)
 
     def show_statements(self):
