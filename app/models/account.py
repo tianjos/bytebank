@@ -12,7 +12,7 @@ class AccountModel:
     def deposit(self, value: int):
         self._balance += value
     
-    def draw(self, value: int):
+    def withdraw(self, value: int):
         self._balance -= value
         return value
 
