@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
 from validate_docbr import CPF
@@ -21,16 +21,16 @@ class ClientModelList:
         self.__index = 0
         self.__counter = 1
     
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'Clients: <{[item for item in self.__clients]}>'
 
     def __len__(self):
         return len(self.__clients)
     
-    def __contains__(self, value: str):    
-        return any([True if client.cpf == value else False for client in self])
+    def __contains__(self, value: str, attr: str = 'cpf') -> bool:
+        return any([True if getattr(client, attr) == value else False for client in self])
 
-    def __getitem__(self, i):
+    def __getitem__(self, i) -> Client:
         return self.__clients[i]
     
     def __delitem__(self, i):
@@ -53,12 +53,12 @@ class ClientModelList:
         for index in range((size - 1), 0, -1):
             self.__clients[index], self.__clients[index - 1] = self.__clients[index - 1], self.__clients[index]
         
-    def pop(self):
+    def pop(self) -> Client:
         item = self.__clients[len(self.__clients) -1]
         del self.__clients[len(self.__clients) -1]
         return item
     
-    def pop_left(self):
+    def pop_left(self) -> Client:
         item = self.__clients[0]
         del self.__clients[0]
         return item
