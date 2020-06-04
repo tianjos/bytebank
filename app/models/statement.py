@@ -7,9 +7,9 @@ from pydantic import BaseModel
 class StatementModel(BaseModel):
     timestamp: datetime = datetime.now()
     description: str = None
-    withdraw: int = None
-    deposit: int = None
-    balance: int
+    withdraw: float = None
+    deposit: float = None
+    balance: float
 
 
 class StatementModelList(BaseModel):
@@ -17,10 +17,10 @@ class StatementModelList(BaseModel):
 
     def add(
         self,
-        balance: int, 
+        balance: float, 
         description: str = None, 
-        withdraw: int = None, 
-        deposit: int = None
+        withdraw: float = None, 
+        deposit: float = None
         ):
         self.statements.append(
             StatementModel(
