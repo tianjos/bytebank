@@ -18,5 +18,14 @@ class ClientController:
     def open_account(self, client_data: Dict[str, str]):
         account = AccountModel()
         self.add_client(client_data, account)
+    
+    def deposit(self, from_account: ClientModel, to_account: ClientModel, value: int, description: str):
+        from_account.transfer(to_account, value, description)
+
+    def withdraw(self, account: ClientModel, value: int, description: str):
+        account.withdraw(value, description)
+        
+
+
 
     

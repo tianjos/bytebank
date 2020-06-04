@@ -24,3 +24,7 @@ class AccountModel:
     def transfer(self, value: int, account: 'AccountModel', description: str = None):
         account.deposit(value, description)
         self.withdraw(value, description)
+
+    def show_statements(self):
+        for statement in self._statements:
+            print(statement.dict())
