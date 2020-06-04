@@ -18,4 +18,4 @@ class AccountModel:
 
     def transfer(self, value: int, account: 'AccountModel'):
         account.deposit(value)
-        self._balance -= value
+        self.withdraw(value)
