@@ -1,12 +1,16 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, TypeVar
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
 from validate_docbr import CPF
 
 
+AccountModelType = TypeVar('Account')
+
+
 class ClientModel(BaseModel):
     name: str = Field(min_length=2, max_length=20)
     cpf: str
+    account: AccountModelType
 
     @validator('cpf')
     def check_cpf(cls, v):
@@ -30,7 +34,7 @@ class ClientModelList:
     def __contains__(self, value: str, attr: str = 'cpf') -> bool:
         return any([True if getattr(client, attr) == value else False for client in self])
 
-    def __getitem__(self, i) -> Client:
+    def __getitem__(self, i) -> 'Client':
         return self.__clients[i]
     
     def __delitem__(self, i):
@@ -43,8 +47,8 @@ class ClientModelList:
     def __next__(self):
         return next(self.__clients)
 
-    def push(self, item: Dict[str, str]):
-        self.__clients.append(ClientModel(**item))
+    def push(self, client: ClientModel):
+        self.__clients.append(client)
         self.__index += 1
     
     def push_left(self, item):
@@ -53,12 +57,12 @@ class ClientModelList:
         for index in range((size - 1), 0, -1):
             self.__clients[index], self.__clients[index - 1] = self.__clients[index - 1], self.__clients[index]
         
-    def pop(self) -> Client:
+    def pop(self) -> 'Client':
         item = self.__clients[len(self.__clients) -1]
         del self.__clients[len(self.__clients) -1]
         return item
     
-    def pop_left(self) -> Client:
+    def pop_left(self) -> 'Client':
         item = self.__clients[0]
         del self.__clients[0]
         return item
