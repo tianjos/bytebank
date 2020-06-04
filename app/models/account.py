@@ -8,3 +8,14 @@ class AccountModel:
     @property
     def balance(self):
         return self._balance
+    
+    def deposit(self, value: int):
+        self._balance += value
+    
+    def draw(self, value: int):
+        self._balance -= value
+        return value
+
+    def transfer(self, value: int, account: 'AccountModel'):
+        account.deposit(value)
+        self._balance -= value
