@@ -8,15 +8,15 @@ AccountModelType = TypeVar('Account')
 
 
 class ClientModel(BaseModel):
-    name: str = Field(min_length=2, max_length=20)
-    cpf: str
+    username: str = Field(min_length=2, max_length=20)
+    # cpf: str
     account: AccountModelType
 
-    @validator('cpf')
-    def check_cpf(cls, v):
-        if not CPF().validate(v):
-            raise ValueError(f"CPF {v} inválido")
-        return v
+    # @validator('cpf')
+    # def check_cpf(cls, v):
+    #     if not CPF().validate(v):
+    #         raise ValueError(f"CPF {v} inválido")
+    #     return v
 
 class ClientModelList:
 
