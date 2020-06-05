@@ -27,5 +27,5 @@ class AccountModel:
         self.withdraw(value, description)
 
     def show_statements(self):
-        for statement in self._statements:
-            print(statement.dict())
+        for statement in self._statements.statements:
+            print(statement.json())

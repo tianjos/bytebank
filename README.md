@@ -10,5 +10,5 @@ Bytebank - Free Open Bank Platform
 ### Client Todo
 - [x] open an account
 - [x] make a transaction
-- [ ] check balance
-- [ ] transaction history
+- [x] check balance
+- [x] transaction history
