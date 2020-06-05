@@ -3,7 +3,6 @@ from typing import Dict
 from app.models.client import ClientModel, ClientModelList
 from app.models.account import AccountModel
 from app.views.client import ClientView
-from app.services.filter_client import FilterClientService
 from app.services.index_client import IndexClient
 
 
@@ -39,3 +38,11 @@ class ClientController:
     def withdraw(self, client: str, value: float, description: str = None):
         client_model = self._get_client(client)
         client_model.account.withdraw(value, description)
+    
+    def show_statements(self, client: str):
+        client_model = self._get_client(client)
+        client_model.account.show_statements()
+    
+    def show_balance(self, client: str):
+        client_model = self._get_client(client)
+        print(client_model.account.balance)
