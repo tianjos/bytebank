@@ -50,6 +50,7 @@ class ClientModelList:
     def push(self, client: ClientModel):
         self.__clients.append(client)
         self.__index += 1
+        return self.__index - 1
     
     def push_left(self, item):
         self.push(item)

@@ -13,25 +13,29 @@ class ClientController:
         self.clients = ClientModelList()
         self._index_client = IndexClient()
 
+    def _get_client(self, username: str) -> ClientModel:
+        client_position = self._index_client.get(username)
+        return self.clients[client_position]
+
     def add_client(self, client_data: Dict[str, str], account: AccountModel):
-        self.clients.push(
-            ClientModel(name=client_data['name'], account=account)
+        return self.clients.push(
+            ClientModel(username=client_data['username'], account=account)
         )
     
     def open_account(self, client_data: Dict[str, str]):
         account = AccountModel()
-        self.add_client(client_data, account)
-    
-    def deposit(self, client: ClientModel, value: float):
-        client.account.deposit(value)
-    
-    # def transfer(self, from_client_id, to_client_id, value):
-    #     from_client = FilterClientService.filter_by_attr('username', from_client_id, self.clients)
-    #     to_client = FilterClientService.filter_by_attr('username', to_client_id, self.clients)
-    #     from_client.account.transfer(to_client, value)
+        client_index_position = self.add_client(client_data, account)
+        self._index_client.add(client_data['username'], client_index_position)
 
-    def transfer(self, from_client: ClientModel, to_client: ClientModel, value: float, description: str = None):
-        from_client.account.transfer(to_client, value, description)
+    def deposit(self, client: str, value: float):
+        client_model = self._get_client[client]
+        client_model.account.deposit(value)
+    
+    def transfer(self, from_client: str, to_client: str, value: float, description: str = None):
+        from_client_model = self._get_client(from_client)
+        to_client_model = self._get_client(to_client)
+        from_client_model.account.transfer(to_client_model, value, description)
 
-    def withdraw(self, client: ClientModel, value: float, description: str):
-        client.account.withdraw(value, description)
+    def withdraw(self, client: str, value: float, description: str = None):
+        client_model = self._get_client(client)
+        client_model.account.withdraw(value, description)
