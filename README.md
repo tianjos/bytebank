@@ -12,3 +12,10 @@ Bytebank - Free Open Bank Platform
 - [x] make a transaction
 - [x] check balance
 - [x] transaction history
+
+### Authentication Todo
+- [ ] auth controller
+- [ ] auth model
+- [ ] auth service
+- [ ] make login
+- [ ] make logout

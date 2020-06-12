@@ -17,9 +17,12 @@ class ClientController:
         return self.clients[client_position]
 
     def add_client(self, client_data: Dict[str, str], account: AccountModel):
-        return self.clients.push(
-            ClientModel(username=client_data['username'], account=account)
-        )
+        # return self.clients.push(
+        #     ClientModel(username=client_data['username'], account=account)
+        # )
+        client_model = ClientModel(username=client_data['username'], account=account)
+        client_model.create_passwd(client_data['passwd'])
+        return self.clients.push(client_model)
     
     def open_account(self, client_data: Dict[str, str]):
         account = AccountModel()

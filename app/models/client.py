@@ -1,14 +1,18 @@
-from typing import Dict, List, TypeVar
+import re
+from typing import Dict, List, Optional, TypeVar
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
 from validate_docbr import CPF
 
+from .passwd import PasswordModel
 
 AccountModelType = TypeVar('Account')
 
 
 class ClientModel(BaseModel):
     username: str = Field(min_length=2, max_length=20)
+    # passwd = PasswordModel(passwd='TxRx20@!')
+    passwd: Optional[PasswordModel] = None
     # cpf: str
     account: AccountModelType
 
@@ -17,6 +21,11 @@ class ClientModel(BaseModel):
     #     if not CPF().validate(v):
     #         raise ValueError(f"CPF {v} inválido")
     #     return v
+    def create_passwd(self, passwd):
+        if self.passwd is None:
+            self.passwd = PasswordModel(passwd=passwd)
+        else:
+            raise ValueError('password already exists')
 
 class ClientModelList:
 
