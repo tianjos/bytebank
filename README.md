@@ -14,8 +14,7 @@ Bytebank - Free Open Bank Platform
 - [x] transaction history
 
 ### Authentication Todo
-- [ ] auth controller
-- [ ] auth model
-- [ ] auth service
-- [ ] make login
-- [ ] make logout
+- [x] auth service
+- [x] make login
+- [x] make logout
+- [ ] create helper to validate if log in 
