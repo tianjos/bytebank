@@ -3,7 +3,7 @@ Bytebank - Free Open Bank Platform
 
 ### Requirements
 - pipenv
-- python => 3.8
+- python >= 3.8
 
 ***
 
