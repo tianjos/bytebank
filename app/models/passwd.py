@@ -13,9 +13,12 @@ class PasswordModel(BaseModel):
     expires: datetime = created + timedelta(days=EXPIRES_DAYS)
 
     @validator('passwd')
-    def check_pass(cls, v):
+    def validated_passwd(cls, v):
         match = PASSWD_REGEX.match(v)
         if not match or len(v) < 8:
             raise ValueError(f'password does not match criteria')
+    
+    def check_passwd(self, password: str) -> bool:
+        return self.passwd == password
     
 
