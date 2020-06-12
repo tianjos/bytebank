@@ -17,6 +17,7 @@ class PasswordModel(BaseModel):
         match = PASSWD_REGEX.match(v)
         if not match or len(v) < 8:
             raise ValueError(f'password does not match criteria')
+        return v
     
     def check_passwd(self, password: str) -> bool:
         return self.passwd == password

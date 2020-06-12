@@ -1,4 +1,3 @@
-from functools import wraps
 from app.models.client import ClientModel
 
 
@@ -11,7 +10,7 @@ class AuthService:
         if client.passwd.check_passwd(passwd):
             self._authenticated_users.add(client.username)
         else:
-            return 'Senha inválida' 
+            raise ValueError('invalid password')
 
     def logout(self, username: str):
         self._authenticated_users.discard(username)
