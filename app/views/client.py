@@ -1,3 +1,5 @@
+
+
 class ClientView:
     
     def render(self, clients):

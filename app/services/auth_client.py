@@ -1,6 +1,7 @@
 from functools import wraps
 from app.models.client import ClientModel
 
+
 class AuthService:
 
     def __init__(self):

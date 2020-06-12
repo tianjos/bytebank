@@ -6,6 +6,7 @@ from validate_docbr import CPF
 
 from .passwd import PasswordModel
 
+
 AccountModelType = TypeVar('Account')
 
 

@@ -6,6 +6,7 @@ from app.views.client import ClientView
 from app.services.index_client import IndexClient
 from app.services.auth_client import AuthService
 
+
 class ClientController:
     def __init__(self):
         self.client_view =  ClientView()
